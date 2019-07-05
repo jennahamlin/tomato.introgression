@@ -227,23 +227,9 @@ cd /scratch/jhamlin/tomato
 #bcftools view solanum.combined.chr12.bcf | vcfutils.pl varFilter -Q 30 -d 10 - > solanum.filtered.chr12.vcf
 
 
-
-
-##########6. Filter BCF with VCFtoosl. I used minimum base quality required to be 30 or greater and read depth to be 10 or greater
+##########6. Concatenate vcf files parsed by chromsome into one vcf whole genome file.
 #module load VCFtools/0.1.15-foss-2016b-Perl-5.24.1
 #
-#vcftools --bcf solanum.combined.chr01.bcf --minQ 29 --min-meanDP 10 --recode --recode-INFO-all --out solanum.combined.filtered.chr01
-#vcftools --bcf solanum.combined.chr02.bcf --minQ 29 --min-meanDP 10 --recode --recode-INFO-all --out solanum.combined.filtered.chr02
-#cftools --bcf solanum.combined.chr03.bcf --minQ 29 --min-meanDP 10 --recode --recode-INFO-all --out solanum.combined.filtered.chr03
-#vcftools --bcf solanum.combined.chr04.bcf --minQ 29 --min-meanDP 10 --recode --recode-INFO-all --out solanum.combined.filtered.chr04
-#vcftools --bcf solanum.combined.chr05.bcf --minQ 29 --min-meanDP 10 --recode --recode-INFO-all --out solanum.combined.filtered.chr05
-#vcftools --bcf solanum.combined.chr06.bcf --minQ 29 --min-meanDP 10 --recode --recode-INFO-all --out solanum.combined.filtered.chr06
-#vcftools --bcf solanum.combined.chr07.bcf --minQ 29 --min-meanDP 10 --recode --recode-INFO-all --out solanum.combined.filtered.chr07
-#vcftools --bcf solanum.combined.chr08.bcf --minQ 29 --min-meanDP 10 --recode --recode-INFO-all --out solanum.combined.filtered.chr08
-#vcftools --bcf solanum.combined.chr09.bcf --minQ 29 --min-meanDP 10 --recode --recode-INFO-all --out solanum.combined.filtered.chr09
-#vcftools --bcf solanum.combined.chr10.bcf --minQ 29 --min-meanDP 10 --recode --recode-INFO-all --out solanum.combined.filtered.chr10
-#vcftools --bcf solanum.combined.chr11.bcf --minQ 29 --min-meanDP 10 --recode --recode-INFO-all --out solanum.combined.filtered.chr11
-#vcftools --bcf solanum.combined.chr12.bcf --minQ 29 --min-meanDP 10 --recode --recode-INFO-all --out solanum.combined.filtered.chr12
 
 #vcf-concat solanum.filtered.chr01.vcf solanum.filtered.chr02.vcf solanum.filtered.chr03.vcf solanum.filtered.chr04.vcf solanum.filtered.chr05.vcf solanum.filtered.chr06.vcf solanum.filtered.chr07.vcf solanum.filtered.chr08.vcf solanum.filtered.chr09.vcf solanum.filtered.chr10.vcf solanum.filtered.chr11.vcf solanum.filtered.chr12.vcf |  gzip -c > solanum.all.filtered.vcf.gz
 
