@@ -1,7 +1,4 @@
-library(ggmap)
 library(ggplot2)
-library(raster)
-library(maptools)
 library(RColorBrewer)
 library(gridExtra)
 library(ggrepel)
