@@ -7,7 +7,6 @@ library(ggrepel)
 
 #accession geographic coordinates
 spec.loc <- read.csv("spec.loc.csv",header=TRUE)
-row.names(spec.loc) <- spec.loc[,1]
 
 #this will be a small inset of the entire country
 mapa <- borders("world", regions = c("Brazil", "Uruguay", "Argentina", "French Guiana", "Suriname", "Colombia", "Venezuela",
