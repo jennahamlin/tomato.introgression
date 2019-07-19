@@ -1,0 +1,35 @@
+#!/bin/bash
+
+#PBS -m abe
+#PBS -M mhibbins@iu.edu
+#PBS -l walltime=15:00:00,vmem=16GB,nodes=1:ppn=1
+#PBS -N calc_tomato_Dstats 
+#PBS -e /N/dc2/scratch/mhibbins/
+#PBS -o /N/dc2/scratch/mhibbins/
+
+#Change working directory
+cd /N/dc2/scratch/mhibbins/introgression_tomato/
+
+#Load python 3
+
+#Calculate D statistics 
+#python scripts/D_bootstrap/tomato_Dstat.py LA1044 LA0483 LA0746 >> tomato_Dstats.txt
+#python scripts/D_bootstrap/tomato_Dstat.py LA2172 LA2157 LA2147 >> tomato_Dstats.txt 
+#python scripts/D_bootstrap/tomato_Dstat.py LA1375 LA1246 LA2133 >> tomato_Dstats.txt
+#python scripts/D_bootstrap/tomato_Dstat.py LA1582 LA1933 LA1969 >> tomato_Dstats.txt
+#python scripts/D_bootstrap/tomato_Dstat.py LA0400 LA1269 LA0118 >> tomato_Dstats.txt
+#python scripts/D_bootstrap/tomato_Dstat.py LA1617 LA1521 LA0118 >> tomato_Dstats.txt
+#python scripts/D_bootstrap/tomato_Dstat.py LA1595 LA1341 LA1278 >> tomato_Dstats.txt
+python scripts/D_bootstrap/tomato_Dstat.py LA1617 LA1269 LA1278 >> tomato_Dstats.txt
+#python scripts/D_bootstrap/tomato_Dstat.py LA0417 LA0442 LA1777 >> tomato_Dstats.txt
+#python scripts/D_bootstrap/tomato_Dstat.py LA1245 LA1269 LA1272 >> tomato_Dstats.txt
+#python scripts/D_bootstrap/tomato_Dstat.py LA2172 LA2157 LA1718 >> tomato_Dstats.txt
+#python scripts/D_bootstrap/tomato_Dstat.py LA1777 LA1718 LA2133 >> tomato_Dstats.txt
+#python scripts/D_bootstrap/tomato_Dstat.py LA0407 LA1777 LA0118 >> tomato_Dstats.txt
+#python scripts/D_bootstrap/tomato_Dstat.py LA1983 LA1365 LA1718 >> tomato_Dstats.txt
+#python scripts/D_bootstrap/tomato_Dstat.py LA2172 LA2157 LA0373 >> tomato_Dstats.txt
+#python scripts/D_bootstrap/tomato_Dstat.py LA2172 LA2157 LA0373 >> tomato_Dstats.txt
+#python scripts/D_bootstrap/tomato_Dstat.py LA1777 LA0407 LA0373 >> tomato_Dstats.txt
+#python scripts/D_bootstrap/tomato_Dstat.py LA1777 LA0407 LA0400 >> tomato_Dstats.txt
+#python scripts/D_bootstrap/tomato_Dstat.py LA1278 PI128650 LA0373 >> tomato_Dstats.txt
+#python scripts/D_bootstrap/tomato_Dstat.py LA1278 PI128650 LA0400 >> tomato_Dstats.txt 
