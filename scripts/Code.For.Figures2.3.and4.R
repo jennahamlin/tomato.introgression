@@ -1,5 +1,9 @@
 library(ggplot2)
 library(ggbeeswarm)
+library(grid)
+library(gridBase)
+tiff("Fig.2.tiff", units="in", width=11, height=8.5, res=300)
+
 #setwd("~/Desktop/Figures.Final")
 #####Figure 2 - Plot of all Genome-wide D values with mean and 95% confidence intervals for geographic trios
 
@@ -42,13 +46,11 @@ estimates$sum.BABA<-tapply(mydata$BABA, mydata$group, sum)
 #mydata<-subset(mydata, adjustedp<0.06, select=c(group, Dstat.alwaysABBAminusBABA))
 
 ggplot()+
-  geom_point(data=mydata, color= ifelse(mydata$Pvalue<0.06, 'deepskyblue', 'lightgray'), 
+  geom_point(data=mydata, alpha = 1/3, color= ifelse(mydata$Pvalue<0.06, 'deepskyblue', 'lightgray'), 
              aes(x=group,y=Dstat.alwaysABBAminusBABA ), position = position_jitter(w = 0.4))+
-  #geom_quasirandom(data=mydata, color= ifelse(adjustedp<0.05, 'deepskyblue', 'lightgray'), 
-    #              aes(x=group,y=Dstat.alwaysABBAminusBABA ), show.legend =F, cex=1,
-    #             position = position_jitter(w = 0.3, h = 0.3))+
-  labs(y="Genome-wide D-statistic (mean with 95% CI)")+
   theme_bw()+
+  theme(axis.title.x = element_blank())+
+  labs(y="Genome-wide D-statistic (mean with 95% CI)")+
   theme(panel.border = element_blank(),panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank(), strip.text.x = element_blank(),
         panel.spacing.x = unit(0,"line"))+
@@ -58,49 +60,111 @@ ggplot()+
   theme(axis.text.y = element_text(colour = 'black'))+
   geom_point(data=estimates, aes(x=group, y=MeanD), size=3)+
   geom_errorbar(data=estimates, aes(x=group, ymin=MeanD- abs(C95_lwr), ymax=MeanD+ abs(C95_upr)), width=.1)+
-  geom_hline(yintercept=c(0), linetype='dotted')
+  geom_hline(yintercept=c(0), linetype='dotted')+
+  theme(plot.margin = unit(c(1, 9, 4, 1), "lines")) #extra space on the right 
 
-#sympartic trios sliced independently in order to test if each trio mean is significantly different than zero
-arc.arc.hab<-slice(rawdat,1:8027) #1
-arc.arc.pim<-slice(rawdat,8028:16054 )#2 
-gal.gal.che<-slice(rawdat,16055:24081)#3
-hab.hab.cor<-slice(rawdat,24082:32108)#4 
-hab.hab.neo<-slice(rawdat,32109:40135)#5 
-hua.hua.hab<-slice(rawdat,40136:48162)#6 
-per.per.pen<-slice(rawdat,48163:56189)#7 
-pim.pim.chi<-slice(rawdat,56190:64216)#8 
-pim.pim.cor1<-slice(rawdat,64217:72243)#9 
-pim.pim.cor2<-slice(rawdat,72244:80270)#10 
-pim.pim.hab<-slice(rawdat,80271:88297) #11
-pim.pim.neo<-slice(rawdat,88298:96324) #12
-pim.pim.pen<-slice(rawdat,96325:104351) #13
-pim.pim.per1<-slice(rawdat,104352:112378) #14
-pim.pim.per2<-slice(rawdat,112379:120405) #15
+
+grid.text(x = unit(0.93, "npc"), y = unit(0.725, "npc") ,label="+D\nGreater\n introgression\n between\n proximate pairs ")
+grid.text(x = unit(0.93, "npc"), y = unit(0.4, "npc") ,label="-D\n Greater\n introgression\n between\n distant pairs ")
+
+grid.lines(x = unit(c(0.85,0.84 ), "npc"), y = unit(c(0.94,0.94), "npc"))#horizontal top
+grid.lines(x = unit(c(0.85,0.85 ), "npc"), y = unit(c(0.61,0.94), "npc"))
+grid.lines(x = unit(c(0.85,0.84 ), "npc"), y = unit(c(0.61,0.61), "npc"))#horizontal bottom for greater than 
+
+grid.lines(x = unit(c(0.85,0.84 ), "npc"), y = unit(c(0.593,0.593), "npc"))
+grid.lines(x = unit(c(0.85,0.85 ), "npc"), y = unit(c(0.26,0.593), "npc"))#vertical line 
+grid.lines(x = unit(c(0.85,0.84 ), "npc"), y = unit(c(0.26,0.26), "npc"))
+
+
+grid.text(x = unit(0.87, "npc"), y = unit(0.21, "npc") ,label="Distant")
+grid.text(x = unit(0.87, "npc"), y = unit(0.16, "npc") ,label="Proximate")
+grid.text(x = unit(0.87, "npc"), y = unit(0.11, "npc") ,label="Proximate")
+grid.text(x = unit(0.87, "npc"), y = unit(0.06, "npc") ,label="Outgroup")
+
+#draw phylogeny
+grid.lines(x = unit(c(0.99,0.9), "npc"), y = unit(c(0.15,0.21), "npc")) # p1
+
+grid.lines(x = unit(c(0.907,.93), "npc"), y = unit(c(0.160, 0.19), "npc")) # p2 
+
+grid.lines(x = unit(c(0.91,.96), "npc"), y = unit(c(0.11, 0.17), "npc")) # p3 
+grid.lines(x = unit(c(0.91,.99), "npc"), y = unit(c(0.06, 0.15), "npc")) # outgroup
+
+dev.off()
 
 
 #sympartic trios sliced independently in order to test if each trio mean is significantly different than zero
 #and this is for site that are greater than 20
-arc.arc.hab<-slice(rawdat,1:5130) 
-arc.arc.pim<-slice(rawdat,5131:10464 )
-gal.gal.che<-slice(rawdat,10465:10615)
-hab.hab.cor<-slice(rawdat,10616:16067)
-hab.hab.neo<-slice(rawdat,16068:21468)
-hua.hua.hab<-slice(rawdat,21469:26345)
-per.per.pen<-slice(rawdat,26346:30042)
-pim.pim.chi<-slice(rawdat,30043:33184)
-pim.pim.cor1<-slice(rawdat,33185:37566) 
-pim.pim.cor2<-slice(rawdat,37567:41772)
-pim.pim.hab<-slice(rawdat,41773:47189)
-pim.pim.neo<-slice(rawdat,47190:52413)
-pim.pim.pen<-slice(rawdat,52414:55772)
-pim.pim.per1<-slice(rawdat,55773:61483)
-pim.pim.per2<-slice(rawdat,61484:65747)
+arc.arc.hab<-mydata %>%
+  group_by(group) %>%
+  filter(group == "arc.arc.hab")
+
+arc.arc.pim<-mydata %>%
+  group_by(group) %>%
+  filter(group == "arc.arc.pim")
+
+gal.gal.che<-mydata %>%
+  group_by(group) %>%
+  filter(group == "gal.gal.che")
+
+hab.hab.cor<-mydata %>%
+  group_by(group) %>%
+  filter(group == "hab.hab.cor")
+
+hab.hab.neo<-mydata %>%
+  group_by(group) %>%
+  filter(group == "hab.hab.neo")
+
+hua.hua.hab<-mydata %>%
+  group_by(group) %>%
+  filter(group == "hua.hua.hab")
+
+per.per.pen<-mydata %>%
+  group_by(group) %>%
+  filter(group == "per.per.pen")
+
+pim.pim.chi<-mydata %>%
+  group_by(group) %>%
+  filter(group == "pim.pim.chi")
+
+pim.pim.cor1<-mydata %>%
+  group_by(group) %>%
+  filter(group == "pim.pim.cor1")
+
+pim.pim.cor2<-mydata %>%
+  group_by(group) %>%
+  filter(group == "pim.pim.cor2")
+
+pim.pim.hab<-mydata %>%
+  group_by(group) %>%
+  filter(group == "pim.pim.hab")
+
+pim.pim.neo<-mydata %>%
+  group_by(group) %>%
+  filter(group == "pim.pim.neo")
+
+pim.pim.pen<-mydata %>%
+  group_by(group) %>%
+  filter(group == "pim.pim.pen")
+
+pim.pim.per1<-mydata %>%
+  group_by(group) %>%
+  filter(group == "pim.pim.per1")
+
+pim.pim.per2<-mydata %>%
+  group_by(group) %>%
+  filter(group == "pim.pim.per2")
 
 ##determine if mean value of D is significantly different than zero for each trio
 ## using a chi squared goodness of fit test and 1 degree of freedom
 
 arcA<-sum(arc.arc.hab$Dleft)
 arcB<-sum(arc.arc.hab$Dright)
+
+test <-c(111486, 117313)
+chisq.test(test, p = c(1/2, 1/2))
+
+
+
 arcchi<-((arcA-arcB)^2)/(arcA+arcB)
 arcchi
 pchisq(arcchi, df=1, lower.tail = F)
