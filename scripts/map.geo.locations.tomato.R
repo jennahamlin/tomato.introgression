@@ -1,5 +1,6 @@
 library(ggplot2)
 library(RColorBrewer)
+library(grid)
 library(gridExtra)
 library(ggrepel)
 
@@ -33,11 +34,11 @@ MyMapb<-MyMapb + coord_fixed( xlim=c(-95,-70), ylim=c(-20,5))
 
 MyMapb
 
-#png(file="test.png",w=1800,h=1800, res=300)
+png(file="map.tomatos.png",w=1800,h=1800, res=300)
 grid.newpage()
 v1<-viewport(width = 1, height = 1, x = 0.5, y = 0.5) #plot area for the main map
 v2<-viewport(width = 0.3, height = 0.3, x = 0.20, y = 0.30) #plot area for the inset map
 print(MyMapb,vp=v1) 
 print(MyMapa,vp=v2)
-#dev.off()
+dev.off()
 
