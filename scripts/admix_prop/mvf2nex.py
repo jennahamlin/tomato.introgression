@@ -72,7 +72,7 @@ def write_nex(network, genetrees, filename, introgressed_taxa):
 		network = network.replace(oldlabels[0], 'P1')
 		network = network.replace(oldlabels[1], 'P2')
 		network = network.replace(oldlabels[2], 'P3')
-		network = network.replace(oldlabels[3], 'P4')
+		network = network.replace(oldlabels[3], 'Out')
 
 	for i in range(len(genetrees)):
 		
@@ -117,7 +117,7 @@ def write_nex(network, genetrees, filename, introgressed_taxa):
 		nexfile.write('\n')
 		nexfile.write('BEGIN PHYLONET;\n')
 		nexfile.write('\n')
-		nexfile.write('CalGTProb net (all) -o;\n')
+		nexfile.write('CalGTProb net (all) -o -r 1000 -i 0.0001 -x 20;\n')
 		nexfile.write('\n')
 		nexfile.write('END;')  				
 			

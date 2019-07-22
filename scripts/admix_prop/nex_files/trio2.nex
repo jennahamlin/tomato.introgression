@@ -2,7 +2,7 @@
 
 BEGIN NETWORKS;
 
-Network net = (((P1,((P2,(P3)#H1))),#H1),P4);
+Network net = (((P1,((P2,(P3)#H1))),#H1),Out);
 
 END;
 
@@ -7318,6 +7318,6 @@ END;
 
 BEGIN PHYLONET;
 
-CalGTProb net (all) -o;
+CalGTProb net (all) -o -r 1000 -i 0.0001 -x 20;
 
 END;

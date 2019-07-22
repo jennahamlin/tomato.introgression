@@ -7261,6 +7261,6 @@ END;
 
 BEGIN PHYLONET;
 
-CalGTProb net (all) -o;
+CalGTProb net (all) -o -r 1000 -i 0.0001 -x 20;
 
 END;
