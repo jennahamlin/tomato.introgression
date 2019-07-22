@@ -1,0 +1,48 @@
+#!/bin/bash
+
+#PBS -m abe
+#PBS -M mhibbins@iu.edu
+#PBS -l walltime=10:00:00,vmem=16GB,nodes=1:ppn=1
+#PBS -N tomato_window_genetrees 
+#PBS -e /N/dc2/scratch/mhibbins/
+#PBS -o /N/dc2/scratch/mhibbins/
+
+#Change working directory
+cd /N/dc2/scratch/mhibbins/introgression_tomato/
+
+#Load python 3
+module unload python/2.7.16
+module load python/3.6.1
+
+#Define outgroup string to pass to MVFtools
+outgroup="Potato.sorted.bam,"
+for i in {1..6906}
+do
+outgroup+="Potato.sorted.bam,"
+done
+outgroup+="Potato.sorted.bam"
+
+
+#Infer gene trees 
+python mvftools/mvftools.py InferTree --mvf mvf_files/solanum.all.filtered.mvf --out results/genetrees/trio1_genetrees.txt --sample-labels LA1044.sorted.bam,LA0483.sorted.bam,LA0746.sorted.bam,Potato.sorted.bam --windowsize 100000 --raxml-path /N/dc2/scratch/mhibbins/introgression_tomato/standard-RAxML/raxmlHPC-AVX --raxml-outgroups "$outgroup" --root-with "$outgroup"
+python mvftools/mvftools.py InferTree --mvf mvf_files/solanum.all.filtered.mvf --out results/genetrees/trio2_genetrees.txt --sample-labels LA2172.sorted.bam,LA2157.sorted.bam,LA2147.sorted.bam,Potato.sorted.bam --windowsize 100000 --raxml-path /N/dc2/scratch/mhibbins/introgression_tomato/standard-RAxML/raxmlHPC-AVX --raxml-outgroups Potato.sorted.bam --root-with Potato.sorted.bam
+python mvftools/mvftools.py InferTree --mvf mvf_files/solanum.all.filtered.mvf --out results/genetrees/trio3_genetrees.txt --sample-labels LA1375.sorted.bam,LA1246.sorted.bam,LA2133.sorted.bam,Potato.sorted.bam --windowsize 100000 --raxml-path /N/dc2/scratch/mhibbins/introgression_tomato/standard-RAxML/raxmlHPC-AVX --raxml-outgroups Potato.sorted.bam --root-with Potato.sorted.bam
+python mvftools/mvftools.py InferTree --mvf mvf_files/solanum.all.filtered.mvf --out results/genetrees/trio4_genetrees.txt --sample-labels LA1582.sorted.bam,LA1933.sorted.bam,LA1969.sorted.bam,Potato.sorted.bam --windowsize 100000 --raxml-path /N/dc2/scratch/mhibbins/introgression_tomato/standard-RAxML/raxmlHPC-AVX --raxml-outgroups Potato.sorted.bam --root-with Potato.sorted.bam
+python mvftools/mvftools.py InferTree --mvf mvf_files/solanum.all.filtered.mvf --out results/genetrees/trio5_genetrees.txt --sample-labels LA0400.sorted.bam,LA1269.sorted.bam,LA0118.sorted.bam,Potato.sorted.bam --windowsize 100000 --raxml-path /N/dc2/scratch/mhibbins/introgression_tomato/standard-RAxML/raxmlHPC-AVX --raxml-outgroups Potato.sorted.bam --root-with Potato.sorted.bam
+python mvftools/mvftools.py InferTree --mvf mvf_files/solanum.all.filtered.mvf --out results/genetrees/trio6_genetrees.txt --sample-labels LA1617.sorted.bam,LA1521.sorted.bam,LA0118.sorted.bam,Potato.sorted.bam --windowsize 100000 --raxml-path /N/dc2/scratch/mhibbins/introgression_tomato/standard-RAxML/raxmlHPC-AVX --raxml-outgroups Potato.sorted.bam --root-with Potato.sorted.bam
+python mvftools/mvftools.py InferTree --mvf mvf_files/solanum.all.filtered.mvf --out results/genetrees/trio7_genetrees.txt --sample-labels LA1595.sorted.bam,LA1341.sorted.bam,LA1278.sorted.bam,Potato.sorted.bam --windowsize 100000 --raxml-path /N/dc2/scratch/mhibbins/introgression_tomato/standard-RAxML/raxmlHPC-AVX --raxml-outgroups Potato.sorted.bam --root-with Potato.sorted.bam
+python mvftools/mvftools.py InferTree --mvf mvf_files/solanum.all.filtered.mvf --out results/genetrees/trio8_genetrees.txt --sample-labels LA1617.sorted.bam,LA1269.sorted.bam,LA1278.sorted.bam,Potato.sorted.bam --windowsize 100000 --raxml-path /N/dc2/scratch/mhibbins/introgression_tomato/standard-RAxML/raxmlHPC-AVX --raxml-outgroups Potato.sorted.bam --root-with Potato.sorted.bam
+python mvftools/mvftools.py InferTree --mvf mvf_files/solanum.all.filtered.mvf --out results/genetrees/trio9_genetrees.txt --sample-labels LA0417.sorted.bam,LA0442.sorted.bam,LA1777.sorted.bam,Potato.sorted.bam --windowsize 100000 --raxml-path /N/dc2/scratch/mhibbins/introgression_tomato/standard-RAxML/raxmlHPC-AVX --raxml-outgroups Potato.sorted.bam --root-with Potato.sorted.bam
+python mvftools/mvftools.py InferTree --mvf mvf_files/solanum.all.filtered.mvf --out results/genetrees/trio10_genetrees.txt --sample-labels LA1245.sorted.bam,LA1269.sorted.bam,LA1272.sorted.bam,Potato.sorted.bam --windowsize 100000 --raxml-path /N/dc2/scratch/mhibbins/introgression_tomato/standard-RAxML/raxmlHPC-AVX --raxml-outgroups Potato.sorted.bam --root-with Potato.sorted.bam
+python mvftools/mvftools.py InferTree --mvf mvf_files/solanum.all.filtered.mvf --out results/genetrees/trio11_genetrees.txt --sample-labels LA2172.sorted.bam,LA2157.sorted.bam,LA1718.sorted.bam,Potato.sorted.bam --windowsize 100000 --raxml-path /N/dc2/scratch/mhibbins/introgression_tomato/standard-RAxML/raxmlHPC-AVX --raxml-outgroups Potato.sorted.bam --root-with Potato.sorted.bam
+python mvftools/mvftools.py InferTree --mvf mvf_files/solanum.all.filtered.mvf --out results/genetrees/trio12_genetrees.txt --sample-labels LA1777.sorted.bam,LA1718.sorted.bam,LA2133.sorted.bam,Potato.sorted.bam --windowsize 100000 --raxml-path /N/dc2/scratch/mhibbins/introgression_tomato/standard-RAxML/raxmlHPC-AVX --raxml-outgroups Potato.sorted.bam --root-with Potato.sorted.bam
+python mvftools/mvftools.py InferTree --mvf mvf_files/solanum.all.filtered.mvf --out results/genetrees/trio13_genetrees.txt --sample-labels LA0407.sorted.bam,LA1777.sorted.bam,LA0118.sorted.bam,Potato.sorted.bam --windowsize 100000 --raxml-path /N/dc2/scratch/mhibbins/introgression_tomato/standard-RAxML/raxmlHPC-AVX --raxml-outgroups Potato.sorted.bam --root-with Potato.sorted.bam
+python mvftools/mvftools.py InferTree --mvf mvf_files/solanum.all.filtered.mvf --out results/genetrees/trio14_genetrees.txt --sample-labels LA1983.sorted.bam,LA1365.sorted.bam,LA1718.sorted.bam,Potato.sorted.bam --windowsize 100000 --raxml-path /N/dc2/scratch/mhibbins/introgression_tomato/standard-RAxML/raxmlHPC-AVX --raxml-outgroups Potato.sorted.bam --root-with Potato.sorted.bam
+python mvftools/mvftools.py InferTree --mvf mvf_files/solanum.all.filtered.mvf --out results/genetrees/trio15_genetrees.txt --sample-labels LA2172.sorted.bam,LA2157.sorted.bam,LA0373.sorted.bam,Potato.sorted.bam --windowsize 100000 --raxml-path /N/dc2/scratch/mhibbins/introgression_tomato/standard-RAxML/raxmlHPC-AVX --raxml-outgroups Potato.sorted.bam --root-with Potato.sorted.bam
+python mvftools/mvftools.py InferTree --mvf mvf_files/solanum.all.filtered.mvf --out results/genetrees/trio16_genetrees.txt --sample-labels LA2172.sorted.bam,LA2157.sorted.bam,LA0400.sorted.bam,Potato.sorted.bam --windowsize 100000 --raxml-path /N/dc2/scratch/mhibbins/introgression_tomato/standard-RAxML/raxmlHPC-AVX --raxml-outgroups Potato.sorted.bam --root-with Potato.sorted.bam
+python mvftools/mvftools.py InferTree --mvf mvf_files/solanum.all.filtered.mvf --out results/genetrees/trio17_genetrees.txt --sample-labels LA1777.sorted.bam,LA0407.sorted.bam,LA0373.sorted.bam,Potato.sorted.bam --windowsize 100000 --raxml-path /N/dc2/scratch/mhibbins/introgression_tomato/standard-RAxML/raxmlHPC-AVX --raxml-outgroups Potato.sorted.bam --root-with Potato.sorted.bam
+python mvftools/mvftools.py InferTree --mvf mvf_files/solanum.all.filtered.mvf --out results/genetrees/trio18_genetrees.txt --sample-labels LA1777.sorted.bam,LA0407.sorted.bam,LA0400.sorted.bam,Potato.sorted.bam --windowsize 100000 --raxml-path /N/dc2/scratch/mhibbins/introgression_tomato/standard-RAxML/raxmlHPC-AVX --raxml-outgroups Potato.sorted.bam --root-with Potato.sorted.bam 
+python mvftools/mvftools.py InferTree --mvf mvf_files/solanum.all.filtered.mvf --out results/genetrees/trio19_genetrees.txt --sample-labels LA1278.sorted.bam,PI128650.sorted.bam,LA0373.sorted.bam,Potato.sorted.bam --windowsize 100000 --raxml-path /N/dc2/scratch/mhibbins/introgression_tomato/standard-RAxML/raxmlHPC-AVX --raxml-outgroups Potato.sorted.bam --root-with Potato.sorted.bam
+python mvftools/mvftools.py InferTree --mvf mvf_files/solanum.all.filtered.mvf --out results/genetrees/trio20_genetrees.txt --sample-labels LA1278.sorted.bam,PI128650.sorted.bam,LA0400.sorted.bam,Potato.sorted.bam --windowsize 100000 --raxml-path /N/dc2/scratch/mhibbins/introgression_tomato/standard-RAxML/raxmlHPC-AVX --raxml-outgroups Potato.sorted.bam --root-with Potato.sorted.bam
+ 
+ 
