@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#PBS -m abe
+#PBS -M mhibbins@iu.edu
+#PBS -l walltime=5:00:00,vmem=16GB,nodes=1:ppn=1
+#PBS -N calc_sim_D2
+#PBS -e /N/dc2/scratch/mhibbins/
+#PBS -o /N/dc2/scratch/mhibbins/
+
+#Change working directory
+cd /N/dc2/scratch/mhibbins/introgression_tomato/
+
+#Load python 3
+module unload python/2.7.16
+module load python/3.6.1
+
+for i in {301..400}
+do
+python scripts/D2_statistic/calc_D2_sims.py results/D2_statistic/D2_sims/D2_sims_trio5/D2_sims_trio5_trees_$i.txt results/D2_statistic/D2_sims/D2_sims_trio5/D2_sims_trio5_seqs_$i.txt >> results/D2_statistic/D2_sims/D2_nulls/D2_nulls_trio5.txt
+done

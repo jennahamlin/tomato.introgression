@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#PBS -m abe
+#PBS -M mhibbins@iu.edu
+#PBS -l walltime=2:00:00,vmem=16GB,nodes=1:ppn=1
+#PBS -N calc_newD 
+#PBS -e /N/dc2/scratch/mhibbins/
+#PBS -o /N/dc2/scratch/mhibbins/
+
+#Change working directory
+cd /N/dc2/scratch/mhibbins/introgression_tomato/
+
+#Load python 3
+module unload python/2.7.16
+module load python/3.6.1
+
+for i in {1..100}
+do
+python scripts/admix_prop/newmethod_sims/calc_newstat.py results/admix_prop/newmethod_sims/otherdir_timing_sims/gamma_0.85/gamma_0.85_seqs_otherdir_timing_$i.txt 0.85 >> newD_sim_otherdir_timing_results.txt 
+done
+ 
